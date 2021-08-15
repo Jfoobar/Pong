@@ -1,4 +1,6 @@
 import Paddle from './paddle.mjs'
+import InputHandler from './input.mjs'
+import Ball from './ball.mjs'
 
 let canvas = document.getElementById("gameScreen")
 
@@ -7,20 +9,20 @@ let ctx = canvas.getContext("2d")
 const GAME_WIDTH = 800
 const GAME_HEIGHT = 600
 
-
-
 let paddle = new Paddle(GAME_WIDTH,GAME_HEIGHT)
-
-paddle.draw(ctx)
+let ball = new Ball()
+new InputHandler(paddle);
 
 let lastTime = 0
 
 const gameLoop = (timestamp)=>{
     let deltaTime = timestamp - lastTime
     lastTime = timestamp
-    ctx.clearRect(0,0,800,600)
+    ctx.clearRect(0,0,GAME_WIDTH,GAME_HEIGHT)
     paddle.update(deltaTime)
     paddle.draw(ctx)
+    
+    ball.draw(ctx)
 
     requestAnimationFrame(gameLoop)
 }

@@ -10,6 +10,9 @@ canvas {
   margin: auto;
 }
 
+.img_ball{
+  display: none;
+}
 .container {
   display: flex;
   flex-direction: column;
