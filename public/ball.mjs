@@ -1,9 +1,11 @@
 export default class Ball {
-    constructor(gameWidth, gameHeight){
+    constructor(game){
         this.image = document.getElementById("img_ball")
         this.size = 20
-        this.gameWidth = gameWidth
-        this.gameHeight = gameHeight
+        this.gameWidth = game.gameWidth
+        this.gameHeight = game.gameHeight
+
+        this.game = game // make game available so paddle position can be known
 
         this.position = {x:5, y:5}
         this.speed = {x: 2, y:2}
@@ -17,11 +19,23 @@ export default class Ball {
         this.position.x += this.speed.x
         this.position.y += this.speed.y
 
+        //bounce off wall
         if (this.position.x + this.size > this.gameWidth || this.position.x < 0){
             this.speed.x = -this.speed.x
         }
+
+        //bounce off top or bottom
         if(this.position.y < 0 || this.position.y + this.size > this.gameHeight){
             this.speed.y = -this.speed.y
         }
+
+        //bounce off paddle if bottom of ball > top of paddle:
+        let paddleTop = this.game.paddle.position.y - this.game.paddle.height
+        let paddleRside = this.game.paddle.position.x + this.game.paddle.width
+        if(this.position.y > paddleTop  
+           && this.position.x >=this.game.paddle.position.x
+           && this.position.x <=paddleRside ){
+             this.speed.y = -this.speed.y
+         }
     }
 }
