@@ -1,6 +1,7 @@
 import Paddle from './paddle.mjs'
 import InputHandler from './input.mjs'
 import Ball from './ball.mjs'
+import Brick from './brick.mjs'
 
 export default class Game {
 
@@ -12,7 +13,8 @@ export default class Game {
     start(){
         this.paddle = new Paddle(this)
         this.ball = new Ball(this)
-        this.gameObjects = [this.ball,this.paddle]
+        this.brick = new Brick(this)
+        this.gameObjects = [this.ball,this.paddle, this.brick]
 
         new InputHandler(this.paddle);
     }

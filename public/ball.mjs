@@ -1,3 +1,4 @@
+import { detectCollision } from "./collision.mjs"
 export default class Ball {
     constructor(game){
         this.image = document.getElementById("img_ball")
@@ -30,12 +31,12 @@ export default class Ball {
         }
 
         //bounce off paddle if bottom of ball > top of paddle:
-        let paddleTop = this.game.paddle.position.y - this.game.paddle.height
-        let paddleRside = this.game.paddle.position.x + this.game.paddle.width
-        if(this.position.y > paddleTop  
-           && this.position.x >=this.game.paddle.position.x
-           && this.position.x <=paddleRside ){
-             this.speed.y = -this.speed.y
+        if(detectCollision(this, this.game.paddle)){        
+            this.speed.y = -this.speed.y
+            this.position.y = this.game.paddle.position.y - this.size
          }
+
+        // if(detectCollision(this, this.game.brick))
+        
     }
 }
