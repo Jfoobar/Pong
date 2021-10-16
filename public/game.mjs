@@ -15,13 +15,12 @@ export default class Game {
         this.ball = new Ball(this)
         this.brick = new Brick(this)
         this.gameObjects = [this.ball,this.paddle, this.brick]
-
         new InputHandler(this.paddle);
     }
 
-    update(deltaTime){
+    update(){
         
-        this.gameObjects.map(ob=>ob.update(deltaTime))
+        this.gameObjects.map(ob=>ob.update())
 
     }
 

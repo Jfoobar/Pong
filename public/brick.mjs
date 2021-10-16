@@ -16,7 +16,7 @@ export default class Brick{
         ctx.drawImage(this.image, this.position.x, this.position.y,this.width,this.height)
     }
 
-    update(deltaTime){
+    update(){
         if(detectCollision(this.game.ball, this)){
             this.game.ball.speed.y = -this.game.ball.speed.y
             this.width , this.height = 0

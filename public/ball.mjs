@@ -16,7 +16,7 @@ export default class Ball {
         ctx.drawImage(this.image, this.position.x, this.position.y,this.size,this.size)
     }
 
-    update(deltaTime){
+    update(){
         this.position.x += this.speed.x
         this.position.y += this.speed.y
 
@@ -36,7 +36,6 @@ export default class Ball {
             this.position.y = this.game.paddle.position.y - this.size
          }
 
-        // if(detectCollision(this, this.game.brick))
         
     }
 }
